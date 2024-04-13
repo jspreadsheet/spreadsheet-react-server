@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6309:6379"
+    volumes:
+      - redis-data:/data
+
+  nodejs:
+    image: node:latest
+    ports:
+      - "3009:3000"
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app/server
+    command: sh -c "npm install && npm start"
+    depends_on:
+      - redis
+
+volumes:
+  redis-data:

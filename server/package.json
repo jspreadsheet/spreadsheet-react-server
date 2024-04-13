@@ -1,0 +1,18 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "supervisor src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@jspreadsheet/server": "^11.1.0",
+    "redis": "^4.6.13"
+  },
+  "devDependencies": {
+    "supervisor": "^0.12.0"
+  }
+}
