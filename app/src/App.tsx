@@ -17,7 +17,7 @@ jspreadsheet.setExtensions({ formula, client });
 
 const guid = '53aa4c90-791d-4a65-84a6-8ac25d6b1105'
 
-// Connect
+// Connect to the server
 let remote = client.connect({
   url: 'http://localhost:3009',
   path: 'socket.io/'
