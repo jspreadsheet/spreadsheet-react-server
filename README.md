@@ -2,6 +2,8 @@
 
 The Jspreadsheet Server extension is a JavaScript plugin that enhances Jspreadsheet by enabling real-time data sharing and persistence. This web-socket-based service, hosted on your server, allows multiple users to collaborate interactively on the same spreadsheet. It ensures that all data remains entirely under your control, providing a secure and efficient way to manage collaborative editing and viewing spreadsheet data.
 
+![socket io](https://github.com/jspreadsheet/spreadsheet-react-server/assets/75275282/96383632-42d9-4ff2-93ca-44357484ec07)
+
 ## Prerequisites
 - Git
 - Docker
