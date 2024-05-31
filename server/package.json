@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@jspreadsheet/server": "^11.1.0",
+    "@jspreadsheet/server": "^11.3.0",
     "redis": "^4.6.13"
   },
   "devDependencies": {
