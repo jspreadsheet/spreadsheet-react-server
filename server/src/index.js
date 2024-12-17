@@ -18,44 +18,47 @@ const license = {
 }
 
 server({
+    port: 3000,
+    // Socket.io server configuration
     config: {
         cors: {
-            origin: "*",
+            origin: "*"
         },
     },
-    port: 3000,
-    error: function(e) {
-        console.log(e)
+    error: async function(e) {
+        console.log(e);
+        // Kill the thread
+        process.exit(1);
     },
-    auth: async function(socket) {
-        return true;
-    },
-    load: async function(guid) {
-        return await client.get(guid);
-    },
-    create: async function(guid, config) {
-        const result = await client.exists(guid);
-
-        if (result) {
-            // A spreadsheet already exists
+    load: async function(guid, auth) {
+        let config = await client.get(guid);
+        if (! config) {
             return false;
-        } else {
+        }
+        return config;
+    },
+    create: async function (guid, config, query) {
+        const result = await client.exists(guid);
+        if (! result) {
+            if (typeof(config) === 'object') {
+                config = JSON.stringify(config);
+            }
             // Create a new spreadsheet
             await client.set(guid, config);
-
-            return true;
         }
+
+        return guid;
     },
     destroy: async function(guid) {
         return await client.del(guid)
             .then(() => true)
             .catch(() => false);
     },
-    change: async function(guid, changes) {
+    change: async function (guid, changes) {
         // Get the configuration from the cache
         let config = changes.instance.getConfig();
         // Save that on the redis
-        await client.set(guid, JSON.stringify(config));
+        return await client.set(guid, JSON.stringify(config));
     },
     license: license,
 });

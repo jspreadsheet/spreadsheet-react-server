@@ -15,12 +15,11 @@ jspreadsheet.setLicense(license);
 
 jspreadsheet.setExtensions({ formula, client });
 
-const guid = '53aa4c90-791d-4a65-84a6-8ac25d6b1105'
+const guid = '53aa4c90-791d-4a65-84a6-8ac25d6b1109'
 
 // Connect to the server
 let remote = client.connect({
-  url: 'http://localhost:3009',
-  path: 'socket.io/'
+  url: 'http://localhost:3009'
 });
 
 // Create just one time. Do nothing if already exists
@@ -28,10 +27,12 @@ remote.create(guid, {
   tabs: true,
   toolbar: true,
   worksheets: [{
-    minDimensions: [4,6]
+    minDimensions: [4,6],
+    worksheetName: 'Sheet1'
   }]
-}).then(() => {
-
+}).then((result) => {
+  // Result
+  console.log(result);
 });
 
 
